@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import br.com.postech.techchallengeitems.ItemTestProvider;
+import br.com.postech.techchallengeitems.utils.ItemTestProvider;
 import br.com.postech.techchallengeitems.core.domain.entity.Item;
 import br.com.postech.techchallengeitems.core.gateway.database.ItemGateway;
 import java.util.List;

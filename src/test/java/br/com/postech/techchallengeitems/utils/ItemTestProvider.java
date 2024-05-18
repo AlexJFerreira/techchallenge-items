@@ -1,4 +1,4 @@
-package br.com.postech.techchallengeitems;
+package br.com.postech.techchallengeitems.utils;
 
 import br.com.postech.techchallengeitems.adapters.controller.rest.request.ItemEditionRequest;
 import br.com.postech.techchallengeitems.adapters.controller.rest.request.ItemRegistrationRequest;

@@ -1,6 +1,5 @@
 package br.com.postech.techchallengeitems.adapters.controller.rest;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.doNothing;
@@ -11,15 +10,11 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import br.com.postech.techchallengeitems.ItemTestProvider;
-import br.com.postech.techchallengeitems.adapters.controller.rest.request.ItemRegistrationRequest;
-import br.com.postech.techchallengeitems.core.usecase.RegisterItemUseCase;
+import br.com.postech.techchallengeitems.utils.ItemTestProvider;
 import br.com.postech.techchallengeitems.core.usecase.impl.DeleteItemUseCaseImpl;
 import br.com.postech.techchallengeitems.core.usecase.impl.EditItemUseCaseImpl;
 import br.com.postech.techchallengeitems.core.usecase.impl.RegisterItemUseCaseImpl;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
