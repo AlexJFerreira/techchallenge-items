@@ -5,6 +5,6 @@ import br.com.postech.techchallengeitems.core.domain.enums.ItemType;
 import java.util.List;
 import javax.validation.constraints.NotNull;
 
-public interface SearchItemUseCase {
+public interface SearchItemByTypeUseCase {
     List<Item> execute(@NotNull ItemType type);
 }

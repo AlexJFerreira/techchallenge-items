@@ -12,5 +12,5 @@ public interface ItemGateway {
   Item editItem(Integer id, Item item);
 
   List<Item> searchItemByType(ItemType type);
-
+  List<Item> searchItemByIds(List<Integer> ids);
 }

@@ -23,7 +23,8 @@ public class ItemGatewayImpl implements ItemGateway {
   @Transactional
   public Item registerItem(Item item) {
     var itemEntity = modelMapper.map(item, ItemEntity.class);
-    return modelMapper.map(itemRepository.save(itemEntity), Item.class);
+    var teste = itemRepository.save(itemEntity);
+    return modelMapper.map(teste, Item.class);
   }
 
   @Override
@@ -45,6 +46,14 @@ public class ItemGatewayImpl implements ItemGateway {
   @Transactional
   public List<Item> searchItemByType(ItemType type) {
     var items = itemRepository.findByType(type);
+    return items.stream()
+        .map(itemEntity -> modelMapper.map(itemEntity, Item.class))
+        .toList();
+  }
+
+  @Override
+  public List<Item> searchItemByIds(List<Integer> ids) {
+    var items = itemRepository.findAllById(ids);
     return items.stream()
         .map(itemEntity -> modelMapper.map(itemEntity, Item.class))
         .toList();

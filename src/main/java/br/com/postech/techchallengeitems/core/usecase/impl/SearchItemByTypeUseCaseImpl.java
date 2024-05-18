@@ -4,7 +4,7 @@ package br.com.postech.techchallengeitems.core.usecase.impl;
 import br.com.postech.techchallengeitems.core.domain.entity.Item;
 import br.com.postech.techchallengeitems.core.domain.enums.ItemType;
 import br.com.postech.techchallengeitems.core.gateway.database.ItemGateway;
-import br.com.postech.techchallengeitems.core.usecase.SearchItemUseCase;
+import br.com.postech.techchallengeitems.core.usecase.SearchItemByTypeUseCase;
 import java.util.List;
 import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @AllArgsConstructor
-public class SearchItemUseCaseImpl implements SearchItemUseCase {
+public class SearchItemByTypeUseCaseImpl implements SearchItemByTypeUseCase {
 
   private ItemGateway itemGateway;
 

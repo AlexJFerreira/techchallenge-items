@@ -3,13 +3,14 @@ package br.com.postech.techchallengeitems.adapters.controller.rest;
 
 import br.com.postech.techchallengeitems.adapters.controller.rest.request.ItemEditionRequest;
 import br.com.postech.techchallengeitems.adapters.controller.rest.request.ItemRegistrationRequest;
-import br.com.postech.techchallengeitems.adapters.controller.rest.response.ItemResponse;
+import br.com.postech.techchallengeitems.adapters.controller.rest.response.ItemSearchByTypeResponse;
 import br.com.postech.techchallengeitems.core.domain.entity.Item;
 import br.com.postech.techchallengeitems.core.domain.enums.ItemType;
 import br.com.postech.techchallengeitems.core.usecase.DeleteItemUseCase;
 import br.com.postech.techchallengeitems.core.usecase.EditItemUseCase;
 import br.com.postech.techchallengeitems.core.usecase.RegisterItemUseCase;
-import br.com.postech.techchallengeitems.core.usecase.SearchItemUseCase;
+import br.com.postech.techchallengeitems.core.usecase.SearchItemByIdsUseCase;
+import br.com.postech.techchallengeitems.core.usecase.SearchItemByTypeUseCase;
 import jakarta.validation.Valid;
 import java.util.List;
 import javax.validation.constraints.NotNull;
@@ -36,36 +37,48 @@ public class ItemController {
 
   private final RegisterItemUseCase registerItemUseCase;
   private final EditItemUseCase editItemUseCase;
-  private final SearchItemUseCase searchItemUseCase;
+  private final SearchItemByTypeUseCase searchItemByTypeUseCase;
+  private final SearchItemByIdsUseCase searchItemByIdsUseCase;
   private final DeleteItemUseCase deleteItemUseCase;
   private final ModelMapper modelMapper;
 
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
-  public ItemResponse itemRegistration(@Valid @RequestBody final ItemRegistrationRequest itemRegistrationRequest) {
+  public ItemSearchByTypeResponse itemRegistration(@Valid @RequestBody final ItemRegistrationRequest itemRegistrationRequest) {
     log.info("Item registration request: {} received", itemRegistrationRequest);
     var item = modelMapper.map(itemRegistrationRequest, Item.class);
-    return modelMapper.map(registerItemUseCase.execute(item), ItemResponse.class);
+    return modelMapper.map(registerItemUseCase.execute(item), ItemSearchByTypeResponse.class);
   }
 
   @PatchMapping("/{id}")
   @ResponseStatus(HttpStatus.OK)
-  public ItemResponse itemEdition(@Valid @RequestBody final ItemEditionRequest itemEditionRequest, @PathVariable final Integer id) {
+  public ItemSearchByTypeResponse itemEdition(@Valid @RequestBody final ItemEditionRequest itemEditionRequest, @PathVariable final Integer id) {
     log.info("Item edition request: {} received", itemEditionRequest);
     var item = modelMapper.map(itemEditionRequest, Item.class);
     var savedItem = editItemUseCase.execute(id, item);
-    return modelMapper.map(savedItem, ItemResponse.class);
+    return modelMapper.map(savedItem, ItemSearchByTypeResponse.class);
   }
 
-  @GetMapping
+  @GetMapping(params = "type")
   @ResponseStatus(HttpStatus.OK)
-  public List<ItemResponse> itemSearch(@NotNull @RequestParam final ItemType type) {
+  public List<ItemSearchByTypeResponse> itemSearchByType(@NotNull @RequestParam final ItemType type) {
     log.info("Item search request: {} received", type);
-    var items = searchItemUseCase.execute(type);
+    var items = searchItemByTypeUseCase.execute(type);
     return items.stream()
-        .map(item -> modelMapper.map(item, ItemResponse.class))
+        .map(item -> modelMapper.map(item, ItemSearchByTypeResponse.class))
         .toList();
   }
+  @GetMapping
+  @ResponseStatus(HttpStatus.OK)
+  public List<ItemSearchByTypeResponse> itemSearchByIds(@RequestParam List<Integer> ids) {
+    log.info("Item search by ids: {} request received", ids);
+    var items = searchItemByIdsUseCase.execute(ids);
+    return items.stream()
+        .map(item -> modelMapper.map(item, ItemSearchByTypeResponse.class))
+        .toList();
+  }
+
+
 
   @DeleteMapping("/{id}")
   @ResponseStatus(HttpStatus.OK)
