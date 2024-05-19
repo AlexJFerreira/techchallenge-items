@@ -1,7 +1,7 @@
-# Orders Api
+# Items Api
 
 ## Descrição
-Api responsável por fazer a criação, alteração de status e listagem de pedidos.
+Api responsável por disponibilizar a criação, edição, remoção e busca dos items a serem disponibilizados pelo restaurante.
 
 ## Evidências dos Testes:
 
