@@ -17,7 +17,10 @@
         <java.version>21</java.version>
         <sonar.organization>alexjferreira</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-        <sonar.coverage.exclusions>**/request/*, **/response/*, **/exceptions/*, **/infra/*, **/domain/*, br/com/postech/techchallengeitems/core/domain/**, **/gateway/database/entity/*, br/com/postech/techchallengeitems/Application.class</sonar.coverage.exclusions>
+        <sonar.coverage.exclusions>**/request/*, **/response/*, **/exceptions/*, **/infra/*, **/domain/*,
+            br/com/postech/techchallengeitems/core/domain/**, **/gateway/database/entity/*,
+            br/com/postech/techchallengeitems/Application.class
+        </sonar.coverage.exclusions>
     </properties>
     <dependencies>
         <dependency>
@@ -47,6 +50,11 @@
              <groupId>org.springframework.boot</groupId>
              <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
          </dependency>-->
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-docker-compose</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
