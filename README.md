@@ -5,7 +5,7 @@ Api responsável por disponibilizar a criação, edição, remoção e busca dos
 
 ## Para roda localmente
 - Basta executar a aplicação coma IDE de preferência a partir da classe application do java. 
-- O Docker compose será executado automaticamente subindo o banco em container via integraçado da dependencia spring-boot-docker-compose,
+- O Docker compose será executado automaticamente subindo o banco em container via integraçado da dependencia spring-boot-docker-compose.
 
 
 ## Evidências dos Testes:
